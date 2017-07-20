@@ -27,6 +27,7 @@ bool ListIsEmpty(const List *plist)
 }
 
 /*如果列表已满则返回true*/
+/*这一段不大懂了*/
 bool ListIsFull(const List *plist)
 {
     Node *pt;
