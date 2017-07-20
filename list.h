@@ -8,7 +8,7 @@
 #define TSIZE 45 /*存放片名的数组大小*/
 struct film{
     char title[TSIZE];
-    int rating; 
+    double score; 
 };
 
 /*一般类型定义*/

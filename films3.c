@@ -4,13 +4,12 @@
 //通过定义接口程序，使编程细节和概念模型区分开，同时
 //隐藏了细节，并用与任务直接相关的语言来表达程序。
 //即他讨论的是创建列表和向列表添加项目这样的任务，
-//而不是调用内存函数或者重置指针。
 
 
 #include<stdio.h>
 #include<stdlib.h>  //为exit()提供原型
 #include"list.h"
-#include"list.c"
+//#include"list.c"
 
 void showmovies(Item item);
 
@@ -34,7 +33,8 @@ int main()
     while(gets(temp.title) != NULL && temp.title[0] != '\0')
     {
         puts("Enter your rating<0-10>:");
-        scanf("%d",&temp.rating);
+        scanf("%lf",&temp.score);
+        printf("a = %lf\n",temp.score);
         while(getchar() != '\n')
             continue;
         if(AddItem(temp,&movies) == false)
@@ -65,11 +65,12 @@ int main()
     /*清除*/
     EmptyTheList(&movies);
     printf("Bye!\n");
-
+    
+    system("PAUSE");
     return 0;
 }
 
 void showmovies(Item item)
 {
-    printf("Movies: %s    Rating:%d\n",item.title,item.rating);
+    printf("Movies: %s    Score:%lf\n",item.title,item.score);
 }

@@ -18,6 +18,8 @@ void InitializeList(List *plist)
 /*如果列表为空则返回true，否则返回false*/
 //这个函数不改变列表，不需要传递指针参数，参数可以
 //设置为List类型而不是指向List的指针
+// 电子科技大学出品
+
 bool ListIsEmpty(const List *plist)
 {
     if(*plist == NULL)
@@ -55,6 +57,10 @@ unsigned int ListItemCount(const List *plist)
     {
         ++count;
         pnode = pnode->next;
+        //*plist = (*plist)->next不能这么实现，plist是const
+        //但是这并不是说*plist指向的数据是const，所以，以下代码是可以得
+        //(*plist)->item.rating = 3，此代码并没有改变*plist,只是改变
+        //了*plist所指向的数据
     }
     return count;
 }
@@ -64,7 +70,8 @@ unsigned int ListItemCount(const List *plist)
 bool AddItem(Item item,List *plist)
 {
     Node *pnew;
-    Node *scan = *plist;
+    Node *scan = *plist;//用于分析列表是否为空
+    //若列表为空，则添加的内容放到列表开头，头则追加
 
     pnew = (Node *)malloc(sizeof(Node));
     if(pnew == NULL)    //分配内存失败
@@ -75,7 +82,7 @@ bool AddItem(Item item,List *plist)
         *plist = pnew;
     else
         {
-            while(scan->next != NULL)
+            while(scan->next != NULL)//寻找列表尾部
                 scan = scan->next;
             scan->next = pnew;
         }
